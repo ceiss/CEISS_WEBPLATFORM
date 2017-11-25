@@ -4,10 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Classes
 {
-    public enum Career
-    {
-        SIS,IDS,CYB
-    }
+  
     [Table("STUDENTS")]
     public class Student
     {
