@@ -60,6 +60,14 @@
     <Compile Include="Migrations\201711181631261_Populating Careers table.Designer.cs">
       <DependentUpon>201711181631261_Populating Careers table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711251417393_Articles and Users.cs" />
+    <Compile Include="Migrations\201711251417393_Articles and Users.Designer.cs">
+      <DependentUpon>201711251417393_Articles and Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251432203_Adding preview field to articles.cs" />
+    <Compile Include="Migrations\201711251432203_Adding preview field to articles.Designer.cs">
+      <DependentUpon>201711251432203_Adding preview field to articles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -82,6 +90,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711181631261_Populating Careers table.resx">
       <DependentUpon>201711181631261_Populating Careers table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251417393_Articles and Users.resx">
+      <DependentUpon>201711251417393_Articles and Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251432203_Adding preview field to articles.resx">
+      <DependentUpon>201711251432203_Adding preview field to articles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

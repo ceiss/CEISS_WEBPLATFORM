@@ -183,6 +183,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\api\ArticlesController.cs" />
     <Compile Include="Controllers\api\CareersController.cs" />
     <Compile Include="Controllers\api\StudentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -236,8 +237,11 @@
     <Content Include="UI\Content\Images\Logo fondo oscuro.png" />
     <Content Include="UI\Content\main.js" />
     <Content Include="UI\Content\theme.css" />
+    <Content Include="UI\Controllers\HomeController.js" />
     <Content Include="UI\Controllers\RegisterController.js" />
+    <Content Include="UI\Directives\directive.js" />
     <Content Include="UI\NgRoute.js" />
+    <Content Include="UI\Services\API.js" />
     <Content Include="UI\Templates\Login.html" />
     <Content Include="UI\Templates\Home.html" />
     <Content Include="UI\Templates\Register.html" />
@@ -260,8 +264,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="UI\Directives\" />
-    <Folder Include="UI\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

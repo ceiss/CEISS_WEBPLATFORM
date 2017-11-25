@@ -20,5 +20,8 @@ namespace Datamodel
         }
         public DbSet<Student> Students { get; set; }
         public DbSet<Career> Careers { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
