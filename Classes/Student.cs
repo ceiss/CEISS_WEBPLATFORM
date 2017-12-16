@@ -28,8 +28,10 @@ namespace Classes
         public DateTime BirthDate { get; set; }
         [Required]
         public DateTime CreationDate { get; set; }
+
         public string Password { get; set; }
         public Byte[] Salt { get; set; }
+
         [Required,ForeignKey("Career")]
         public int CareerID { get; set; }
         public Career Career { get; set; }

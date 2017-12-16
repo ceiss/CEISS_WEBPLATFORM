@@ -15,7 +15,6 @@
         };
         $http.get('/api/GetCareers').then(
             function (r) {
-                debugger;
                 $scope.careers = r.data;
             }, function (r) {
             })
@@ -23,10 +22,10 @@
         activate();
         $scope.register = function () {
             $http.post('/api/Students/CreateStudent', $scope.NewStudent).then(() => {
-                debugger;
+                alert('Registro Exitoso');
             }, () => {
-
-                })
+                alert('Ha ocurrido un error.');
+            })
         }
         function activate() { }
     }

@@ -7,13 +7,6 @@
     controller.$inject = ['$location', '$scope', '$http', 'API'];
 
     function controller($location, $scope, $http, API) {
-        $scope.$apply(() => {
-            $('#select').change(() => {
-                $scope.select = $("#select").val();
-            });
-        })
-
-
 
         API.Articles.GetArticles(1).then((r) => {
             

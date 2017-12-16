@@ -1,10 +1,14 @@
 ﻿using Classes;
 using Datamodel;
+using PlataformaCeiss.Services;
 using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.SqlClient;
 
 namespace PlataformaCeiss.Controllers.api
 {
@@ -55,6 +59,7 @@ namespace PlataformaCeiss.Controllers.api
             public DateTime BirthDate { get; set; }
             public DateTime CreationDate { get; set; }
             public int CareerID { get; set; }
+            public string password { get; set; }
         }
 
         [HttpPost, Route("CreateStudent")]
@@ -64,6 +69,9 @@ namespace PlataformaCeiss.Controllers.api
             {
                 try
                 {
+                    SS_SHA CredentialsProvider = new SS_SHA();
+                    var credentials = CredentialsProvider.GenerateCredentials(newStudent.password);
+
                     context.Students.Add(new Student
                     {
                         BirthDate = newStudent.BirthDate,
@@ -76,6 +84,11 @@ namespace PlataformaCeiss.Controllers.api
                         FirstLastName = newStudent.FirstLastName,
                         SecondLastName = newStudent.SecondLastName,
                         Phone = newStudent.Phone,
+
+                        // Credentials
+                        Password = credentials.Password,
+                        Salt = credentials.Salt
+
                     });
                     context.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -86,7 +99,83 @@ namespace PlataformaCeiss.Controllers.api
                 }
             }
         }
+        public class CredentialsDTO
+        {
+            public string password { get; set; }
+            public string email { get; set; }
+        }
 
+        [HttpGet]
+        public object getStudent(int userid)
+        {
+            using (var context = new CEISSContext())
+            {
+                SqlParameter UserIdParam = new SqlParameter("@userid", userid);
+
+
+                context.Database.ExecuteSqlCommand("EXC [GET_STUDENT] @studentid", UserIdParam);
+
+
+            }
+
+
+            return null;
+        }
+
+        [HttpPost, Route("Login")]
+        public HttpResponseMessage Login([FromBody]CredentialsDTO Identity)
+        {
+            using (var context = new CEISSContext())
+            {
+                try
+                {
+                    var user = context.Users.Where(u => u.Email == Identity.email).FirstOrDefault();
+                    SS_SHA SecurityProvider = new SS_SHA();
+                    string condimentedPassword;
+
+                    foreach (var pepper in SecurityProvider.Peppers)
+                    {
+                        condimentedPassword = SecurityProvider.CondimentPassword(pepper, Identity.password, user.Salt);
+                        if (condimentedPassword == Identity.password)
+                        {
+
+
+                            List<Claim> claims = new List<Claim>();
+
+                            claims.Add(new Claim("USERID", user.UserID.ToString()));
+
+                            //// Grant Access.
+                            //var TokenProvider = new Token { claims = claims.ToArray() };
+
+                            var TokenProvider = new Token();
+
+                            var ExpireDate = DateTime.UtcNow.AddMinutes(30);
+
+                            var token = TokenProvider.GenerateToken(ExpireDate, user.UserID.ToString());
+
+                            return Request.CreateResponse(token);
+
+
+                        }
+                    }
+
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                catch (Exception)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+            }
+        }
+
+
+        [HttpGet, Route("test"), CeissAuth]
+        public HttpResponseMessage test()
+        {
+            string userid = ClaimsPrincipal.Current.Claims.Where(c => c.Type == "USERID").FirstOrDefault().Value;
+            return Request.CreateResponse(HttpStatusCode.OK);
+
+        }
 
         [HttpPut, Route("CreateStudent/{studentID}")]
         public HttpResponseMessage UpdateStudent([FromUri] int studentID, [FromBody]StudentDTO StudentChanges)

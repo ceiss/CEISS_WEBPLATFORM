@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201711251432203_Adding preview field to articles.Designer.cs">
       <DependentUpon>201711251432203_Adding preview field to articles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712161443099_ADDING USER PROC.cs" />
+    <Compile Include="Migrations\201712161443099_ADDING USER PROC.Designer.cs">
+      <DependentUpon>201712161443099_ADDING USER PROC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711251432203_Adding preview field to articles.resx">
       <DependentUpon>201711251432203_Adding preview field to articles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712161443099_ADDING USER PROC.resx">
+      <DependentUpon>201712161443099_ADDING USER PROC.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

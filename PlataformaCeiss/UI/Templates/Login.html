@@ -1,4 +1,4 @@
-﻿<div class="py-5">
+﻿<div class="py-5" ng-controller="LoginController">
     <div class="container">
         <div class="row">
             <div class="col-md-3"> </div>
@@ -10,15 +10,19 @@
                             <div class="form-group">
                                 <label>Email</label>
                                 <hr />
-                                <input type="email" class="form-control" placeholder="Correo Electrónico">
+                                <input ng-model="email" type="email" class="form-control" placeholder="Correo Electrónico">
                             </div>
                             <div class="form-group">
                                 <label>Contraseña</label>
                                 <hr />
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input ng-model="password" type="password" class="form-control" placeholder="Password">
                             </div>
-                            <button type="submit" style="padding-right:10px!important" class="btn btn-secondary pull-right">Iniciar Sesi&oacute;n</button>
+                            <button ng-click="login()" style="padding-right:10px!important" class="btn btn-secondary pull-right">Iniciar Sesi&oacute;n</button>
+
+                            
                             <button onclick="location.replace('/register')" type="submit" class="btn btn-warning pull-right">Registrarme</button>
+
+                            <button ng-click="test()" style="padding-right:10px!important" class="btn btn-secondary pull-right">Test identity</button>
                         </form>
                     </div>
                 </div>

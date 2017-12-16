@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace PlataformaCeiss.Controllers
 {
+    [OutputCache(Duration = 30)]
     public class HomeController : Controller
     {
         [Route("{*pathinfo}")]

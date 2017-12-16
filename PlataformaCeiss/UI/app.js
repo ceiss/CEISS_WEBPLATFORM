@@ -22,6 +22,8 @@
 
 var myApp = angular.module('', []);
 
-myApp.controller('DoubleController', ['$scope', function ($scope) {
-    $scope.double = function (value) { return value * 2; };
-}]);
+
+
+//myApp.controller('DoubleController', ['$scope', function ($scope) {
+//    $scope.double = function (value) { return value * 2; };
+//}]);
